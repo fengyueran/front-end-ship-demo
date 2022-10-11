@@ -1,0 +1,13 @@
+{
+  "name": "front-end-ship-demo",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^5.6.2"
+  },
+  "scripts": {
+    "lerna": "lerna"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

@@ -1,0 +1,30 @@
+<html>
+  <body>
+    <input type="file" id="input" />
+    <script>
+      function upload(blob) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/upload', true);
+        xhr.setRequestHeader('Content-Type', 'text/plain');
+        xhr.send(blob);
+      }
+
+      document.getElementById('input').addEventListener(
+        'change',
+        function (e) {
+          const blob = this.files[0];
+          const CHUNK_SIZE = 10;
+          const SIZE = blob.size;
+          let start = 0;
+          let end = CHUNK_SIZE;
+          while (start < SIZE) {
+            upload(blob.slice(start, end));
+            start = end;
+            end = start + CHUNK_SIZE;
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

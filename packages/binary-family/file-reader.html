@@ -1,0 +1,21 @@
+<!-- http://localhost:8081/file-reader.html -->
+<html>
+  <body>
+    <input type="file" id="input" />
+    <script>
+      document.getElementById('input').addEventListener(
+        'change',
+        function (e) {
+          const file = this.files[0];
+          const reader = new FileReader();
+          reader.onload = function () {
+            const res = reader.result;
+            console.log(res);
+          };
+          reader.readAsText(file);
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

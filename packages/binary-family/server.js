@@ -11,6 +11,11 @@ app.post('/upload', function (req, res) {
   console.log('body', req.body);
 });
 
+app.get('/ajax', function (req, res) {
+  console.log('/ajax');
+  res.send('hello world');
+});
+
 app.listen(8081, function () {
   console.log('listening on port', 8081);
 });

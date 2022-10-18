@@ -1,0 +1,28 @@
+<!-- http://localhost:8081/ajax.html -->
+<html>
+  <body>
+    <button id="button">通过ajax获取数据</button>
+    <script>
+      function ajax() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/ajax', true);
+        xhr.responseType = 'arraybuffer';
+
+        xhr.onload = function () {
+          const ab = xhr.response;
+
+          console.log('arrayBuffer', ab);
+          console.log(
+            'arrayBuffer to text',
+            new TextDecoder('utf-8').decode(ab)
+          );
+        };
+        xhr.send();
+      }
+
+      document.getElementById('button').addEventListener('click', (e) => {
+        ajax();
+      });
+    </script>
+  </body>
+</html>

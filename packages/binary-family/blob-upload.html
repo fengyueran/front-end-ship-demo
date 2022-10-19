@@ -12,7 +12,7 @@
 
       document.getElementById('input').addEventListener(
         'change',
-        function (e) {
+        async function (e) {
           const blob = this.files[0];
           const CHUNK_SIZE = 10;
           const SIZE = blob.size;

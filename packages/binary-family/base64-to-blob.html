@@ -1,0 +1,47 @@
+<!-- http://localhost:8081/base64-to-blob.html -->
+<html>
+  <body>
+    <div style="display: flex">canvas:<canvas id="canvas">canvas</canvas></div>
+
+    <div style="display: flex">get img from canvas:<img id="img" /></div>
+
+    <script>
+      function drawRect(canvas) {
+        const ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.rect(20, 20, 150, 100);
+        ctx.stroke();
+      }
+
+      function dataURItoBlob(dataURI) {
+        const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]; // mime类型
+        const byteString = atob(dataURI.split(',')[1]); //base64 解码
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const intArray = new Uint8Array(arrayBuffer);
+
+        for (let i = 0; i < byteString.length; i++) {
+          intArray[i] = byteString.charCodeAt(i); //返回字符的 Unicode 编码
+        }
+        return new Blob([intArray], { type: mimeString });
+      }
+
+      function download(blob) {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.setAttribute('href', url);
+        a.setAttribute('download', 'test.png');
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+      }
+
+      window.onload = () => {
+        const canvas = document.getElementById('canvas');
+        drawRect(canvas);
+        const dataURL = canvas.toDataURL();
+        const blob = dataURItoBlob(dataURI);
+        download(blob);
+      };
+    </script>
+  </body>
+</html>

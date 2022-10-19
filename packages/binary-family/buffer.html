@@ -1,0 +1,18 @@
+<!-- http://localhost:8081/buffer.html -->
+<html>
+  <body>
+    <button id="button">点击上传</button>
+    <script>
+      function upload() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/upload', true);
+        xhr.setRequestHeader('Content-Type', 'text/plain');
+        xhr.send('hello world');
+      }
+
+      document.getElementById('button').addEventListener('click', (e) => {
+        upload();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!-- http://localhost:8081/canvas-to-base64.html -->
+<html>
+  <body>
+    <div style="display: flex">canvas:<canvas id="canvas">canvas</canvas></div>
+
+    <div style="display: flex">get img from canvas:<img id="img" /></div>
+
+    <script>
+      function drawRect(canvas) {
+        const ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.rect(20, 20, 150, 100);
+        ctx.stroke();
+      }
+
+      window.onload = () => {
+        const canvas = document.getElementById('canvas');
+        drawRect(canvas);
+        const img = document.getElementById('img');
+        img.setAttribute('src', canvas.toDataURL());
+      };
+    </script>
+  </body>
+</html>

@@ -8,11 +8,3 @@ find.stdout.pipe(wc.stdin);
 wc.stdout.on('data', (data) => {
   console.log(`Number of files ${data}`);
 });
-
-wc.on('close', () => {
-  console.log('wc close');
-});
-
-setTimeout(() => {
-  wc.stdin.write('0');
-}, 3000);
